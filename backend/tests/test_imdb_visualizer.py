@@ -44,9 +44,7 @@ class ImdbVisualizer:
 
 class ImdbVisualizerTestCase(unittest.TestCase):
     def test_can_get_movies_information_from_an_empty_movies_file(self):
-        empty_movies_file = "empty.csv"
-        with open(empty_movies_file, "w") as csv_file:
-            csv_file.write(self._movies_file_csv_headers())
+        empty_movies_file = self.create_movies_csv_file_with([])
 
         imdb_visualizer = ImdbVisualizer(empty_movies_file)
         all_movies_information = imdb_visualizer.get_all_movies_information()
@@ -54,11 +52,8 @@ class ImdbVisualizerTestCase(unittest.TestCase):
         self.assertEqual(0, len(all_movies_information))
 
     def test_can_get_all_movies_info_for_a_single_movie(self):
-        one_movie_file = "one_movie.csv"
         a_movie_csv_entry = self._titanic_movie_csv_entry()
-        with open(one_movie_file, "w") as csv_file:
-            csv_file.write(self._movies_file_csv_headers())
-            csv_file.write(a_movie_csv_entry)
+        one_movie_file = self.create_movies_csv_file_with([a_movie_csv_entry])
 
         imdb_visualizer = ImdbVisualizer(one_movie_file)
         all_movies_information = imdb_visualizer.get_all_movies_information()
@@ -71,13 +66,9 @@ class ImdbVisualizerTestCase(unittest.TestCase):
         self.assertEqual(expected_movie_information, only_loaded_movie_information)
 
     def test_can_get_all_movies_information_from_a_movies_file(self):
-        movies_file = "movies.csv"
         a_movie_csv_entry = self._titanic_movie_csv_entry()
         another_movie_csv_entry = self._nemo_movie_csv_entry()
-        with open(movies_file, "w") as csv_file:
-            csv_file.write(self._movies_file_csv_headers())
-            csv_file.write(a_movie_csv_entry)
-            csv_file.write(another_movie_csv_entry)
+        movies_file = self.create_movies_csv_file_with([a_movie_csv_entry, another_movie_csv_entry])
 
         imdb_visualizer = ImdbVisualizer(movies_file)
         all_movies_information = imdb_visualizer.get_all_movies_information()
@@ -92,6 +83,15 @@ class ImdbVisualizerTestCase(unittest.TestCase):
         second_loaded_movie_information = all_movies_information[1]
         expected_second_movie_information = self._nemo_movie_information()
         self.assertEqual(expected_second_movie_information, second_loaded_movie_information)
+
+    def create_movies_csv_file_with(self, movie_entries):
+        movies_csv_file = "movies.csv"
+        with open(movies_csv_file, "w") as csv_file:
+            csv_file.write(self._movies_file_csv_headers())
+            for entry in movie_entries:
+                csv_file.write(entry)
+
+        return movies_csv_file
 
     def _titanic_movie_information(self):
         return {
