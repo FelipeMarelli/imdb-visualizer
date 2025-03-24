@@ -51,20 +51,6 @@ class ImdbVisualizerTestCase(unittest.TestCase):
 
         self.assertEqual(0, len(all_movies_information))
 
-    def test_can_get_all_movies_info_for_a_single_movie(self):
-        a_movie_csv_entry = self._titanic_movie_csv_entry()
-        one_movie_file = self.create_movies_csv_file_with([a_movie_csv_entry])
-
-        imdb_visualizer = ImdbVisualizer(one_movie_file)
-        all_movies_information = imdb_visualizer.get_all_movies_information()
-
-        amount_of_loaded_movies = len(all_movies_information)
-        self.assertEqual(1, amount_of_loaded_movies)
-
-        only_loaded_movie_information = all_movies_information[0]
-        expected_movie_information = self._titanic_movie_information()
-        self.assertEqual(expected_movie_information, only_loaded_movie_information)
-
     def test_can_get_all_movies_information_from_a_movies_file(self):
         a_movie_csv_entry = self._titanic_movie_csv_entry()
         another_movie_csv_entry = self._nemo_movie_csv_entry()
