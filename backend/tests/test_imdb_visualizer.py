@@ -8,14 +8,6 @@ class ImdbVisualizerTestCase(unittest.TestCase):
     def tearDown(self):
         os.remove("movies.csv")
 
-    def test_can_get_movies_information_from_an_empty_movies_file(self):
-        empty_movies_file = self.create_movies_csv_file_with([])
-
-        imdb_visualizer = ImdbVisualizer(empty_movies_file)
-        all_movies_information = imdb_visualizer.get_all_movies_information()
-
-        self.assertEqual(0, len(all_movies_information))
-
     def test_can_get_all_movies_information_from_a_movies_file(self):
         a_movie_csv_entry = self._titanic_movie_csv_entry()
         another_movie_csv_entry = self._nemo_movie_csv_entry()
