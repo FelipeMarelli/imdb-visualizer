@@ -1,9 +1,13 @@
+import os
 import unittest
 
 from backend.imdb_visualizer import ImdbVisualizer
 
 
 class ImdbVisualizerTestCase(unittest.TestCase):
+    def tearDown(self):
+        os.remove("movies.csv")
+
     def test_can_get_movies_information_from_an_empty_movies_file(self):
         empty_movies_file = self.create_movies_csv_file_with([])
 
