@@ -41,6 +41,14 @@ class ImdbVisualizer:
             "reviews_from_critics": movie_entry_columns[21]
         }
 
+    def filter_movies_by_title(self, title):
+        movies_found = []
+        for movie in self._movies:
+            if title.lower() in movie["title"].lower():
+                movies_found.append(movie)
+
+        return movies_found
+
 
 class ImdbVisualizerTestCase(unittest.TestCase):
     def test_can_get_movies_information_from_an_empty_movies_file(self):
@@ -69,6 +77,17 @@ class ImdbVisualizerTestCase(unittest.TestCase):
         second_loaded_movie_information = all_movies_information[1]
         expected_second_movie_information = self._nemo_movie_information()
         self.assertEqual(expected_second_movie_information, second_loaded_movie_information)
+
+    def test_can_filter_movies_by_title(self):
+        a_movie_csv_entry = self._titanic_movie_csv_entry()
+        another_movie_csv_entry = self._nemo_movie_csv_entry()
+        movies_file = self.create_movies_csv_file_with([a_movie_csv_entry, another_movie_csv_entry])
+
+        imdb_visualizer = ImdbVisualizer(movies_file)
+        filtered_movies = imdb_visualizer.filter_movies_by_title("nemo")
+
+        self.assertEqual(1, len(filtered_movies))
+        self.assertEqual(self._nemo_movie_information(), filtered_movies[0])
 
     def create_movies_csv_file_with(self, movie_entries):
         movies_csv_file = "movies.csv"
