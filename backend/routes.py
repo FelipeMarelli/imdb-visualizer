@@ -1,4 +1,4 @@
-from flask import send_from_directory
+from flask import send_from_directory, request
 
 
 def mount_routes(flask_app, imdb_visualizer):
@@ -7,9 +7,8 @@ def mount_routes(flask_app, imdb_visualizer):
         return send_from_directory(flask_app.static_folder, "index.html")
 
     @flask_app.route("/movies")
-    def get_all_movies():
+    def get_movies():
+        title = request.args.get("title")
+        if title:
+            return {"movies": imdb_visualizer.filter_movies_by_title(title)}
         return {"movies": imdb_visualizer.get_all_movies_information()}
-
-    @flask_app.route("/movies/<title>")
-    def get_movies_by_title(title):
-        return {"movies": imdb_visualizer.filter_movies_by_title(title)}

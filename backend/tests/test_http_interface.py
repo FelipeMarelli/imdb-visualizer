@@ -26,9 +26,9 @@ class InterfaceTestCase(unittest.TestCase):
             self.assertEqual(200, response.status_code)
 
     def test_get_movies_by_title(self):
-        """Can filter movies by name at '/movies/<title>'."""
+        """Can filter movies by name at '/movies?title='."""
         with self.app.test_client() as client:
-            response = client.get("/movies/titanic")
+            response = client.get("/movies?title=titanic")
             movies_json = response.json["movies"]
             self.assertEqual(200, response.status_code)
             self.assertEqual([titanic_movie_information()], movies_json)
