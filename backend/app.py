@@ -1,7 +1,7 @@
 from flask import Flask
 
-from backend.imdb_visualizer import ImdbVisualizer
-from backend.routes import mount_routes
+from imdb_visualizer import ImdbVisualizer
+from routes import mount_routes
 from flask_cors import CORS
 
 

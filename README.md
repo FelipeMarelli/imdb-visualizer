@@ -28,7 +28,8 @@ Eso creará una carpeta "/build" en el directorio frontend, que será accedida p
 
 Para correr la aplicación:
 ```bash
-python backend/app.py
+cd backend
+python app.py
 ```
 
 La aplicación correrá en http://127.0.0.1:8000.
