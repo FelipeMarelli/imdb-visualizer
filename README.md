@@ -1,5 +1,7 @@
 # Visualizador de películas de IMDB
 
+![imagen](https://github.com/user-attachments/assets/f99e2187-1cca-4527-824d-247346ff5109)
+
 Esta es una aplicación web para explorar películas de la base de datos de IMDB.  
 El backend está hecho con Flask y el frontend con React.
 
