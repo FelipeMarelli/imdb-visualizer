@@ -1,3 +1,5 @@
+# Estas funciones más adelante podrían ser modeladas con Factories u otros objetos más complejos.
+
 def create_movies_csv_file_with(movie_entries):
     movies_csv_file = "movies.csv"
     with open(movies_csv_file, "w") as csv_file:

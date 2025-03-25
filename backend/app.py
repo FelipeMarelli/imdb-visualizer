@@ -1,11 +1,21 @@
 from flask import Flask
-from backend.imdb_visualizer import ImdbVisualizer
-from backend.routes import create_routes
 
-app = Flask(__name__)
+from backend.imdb_visualizer import ImdbVisualizer
+from backend.routes import mount_routes
+
+
+def create_flask_app(imdb_visualizer):
+    app = Flask(__name__, static_folder="../frontend/build", static_url_path="/")
+    mount_routes(app, imdb_visualizer)
+
+    return app
+
 
 def main():
-    imdb_visualizer = ImdbVisualizer("movies.csv")
-    create_routes(app, imdb_visualizer)
+    imdb_visualizer = ImdbVisualizer("IMDb_movies.csv")
+    app = create_flask_app(imdb_visualizer)
 
     app.run(host='0.0.0.0', port=8000, debug=False)
+
+if __name__ == "__main__":
+    main()

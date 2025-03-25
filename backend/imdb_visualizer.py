@@ -1,7 +1,7 @@
 class ImdbVisualizer:
     def __init__(self, movies_csv_file):
         self._movies = []
-        with open(movies_csv_file, "r") as movies_file:
+        with open(movies_csv_file, "r", encoding="latin-1") as movies_file:
             _csv_headers = movies_file.readline()
             for movie_entry in movies_file:
                 movie_information = self._parse_movie_csv_entry(movie_entry)
