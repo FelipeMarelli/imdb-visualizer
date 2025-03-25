@@ -14,7 +14,22 @@ class InterfaceTestCase(unittest.TestCase):
         self.app.testing = True
 
     def test_index(self):
-        """Can get the index '/' page."""
+        """Can get the index page at '/'."""
         with self.app.test_client() as client:
             response = client.get("/")
             self.assertEqual(200, response.status_code)
+
+    def test_get_all_movies(self):
+        """Can get all movies at '/movies'."""
+        with self.app.test_client() as client:
+            response = client.get("/movies")
+            self.assertEqual(200, response.status_code)
+
+    def test_get_movies_by_title(self):
+        """Can filter movies by name at '/movies/<title>'."""
+        with self.app.test_client() as client:
+            response = client.get("/movies/titanic")
+            movies_json = response.json["movies"]
+            self.assertEqual(200, response.status_code)
+            self.assertEqual([titanic_movie_information()], movies_json)
+
