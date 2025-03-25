@@ -12,6 +12,16 @@ class ImdbVisualizer:
     def get_all_movies_information(self):
         return self._movies
 
+    def filter_movies_by_title(self, title):
+        movies_found = []
+        for movie in self._movies:
+            if title.lower() in movie["title"].lower():
+                movies_found.append(movie)
+
+        return movies_found
+
+    # PRIVATE METHODS
+
     def _parse_movie_csv_entry(self, movie_entry):
         return {
             "imdb_title_id": movie_entry[0],
@@ -37,11 +47,3 @@ class ImdbVisualizer:
             "reviews_from_users": movie_entry[20],
             "reviews_from_critics": movie_entry[21]
         }
-
-    def filter_movies_by_title(self, title):
-        movies_found = []
-        for movie in self._movies:
-            if title.lower() in movie["title"].lower():
-                movies_found.append(movie)
-
-        return movies_found

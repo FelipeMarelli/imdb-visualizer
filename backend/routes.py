@@ -1,6 +1,6 @@
 from flask import send_from_directory, request
 
-
+# Mas adelante se podría modelar la interfaz HTTP con un objeto más complejo.
 def mount_routes(flask_app, imdb_visualizer):
     @flask_app.route("/")
     def index():
