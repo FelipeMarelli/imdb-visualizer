@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+.container {
+  padding: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container-movies {
+  font-family: Arial, sans-serif;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 20px;
+}
+
+.movies-list {
+  flex: 2;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin-right: 10px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+li:hover {
+  background: #f0f0f0;
+}
+
+.loading {
+  margin-top: 10px;
+  color: #333;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.page-button {
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.page-button:hover {
+  background-color: #218838;
+}
+
+.page-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.modal {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  height: fit-content;
+}
+
+.modal-content {
+  padding: 10px;
+}
+
+.modal h2 {
+  color: #007bff;
+}
+
+.modal p {
+  margin: 8px 0;
+}
+
+.modal .close {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ff0000;
+  float: right;
+  font-weight: bold;
+}
+
+.modal .close:hover {
+  color: darkred;
 }
